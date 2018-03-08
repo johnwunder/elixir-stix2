@@ -2,21 +2,15 @@
 
 This library is a simple module with helpers for working with STIX 2.0 content. It supports generating IDs, creating objects, and creating bundles.
 
-Future modules may support marking data and parsing markings, versioning, and patterning.
+Future modules may support marking data and parsing markings, patterning, or other features.
 
 ## Installation
 
-This package can be installed by adding `stix` to your list of dependencies in `mix.exs`:
+This code currently isn't in Hex. Clone the repository and then reference it as a path dependency in your `mix.exs` file.
 
 ```elixir
-def deps do
-  [
-    {:stix, "~> 0.1.0"}
-  ]
-end
+{:stix, path: "../elixir-stix2"}
 ```
-
-API Docs: [https://hexdocs.pm/stix](https://hexdocs.pm/stix).
 
 ## Usage
 
