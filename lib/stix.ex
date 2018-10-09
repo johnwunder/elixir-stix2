@@ -73,4 +73,18 @@ defmodule Stix do
     iex> Stix.bundle([Stix.object("campaign", %{title: "Shade of Palms"})])
   """
   defdelegate from_string!(str), to: Stix.Util
+
+  @doc """
+  Create a STIX-formatted timestamp for the current time.
+
+    iex> Stix.now()
+  """
+  defdelegate now, to: Stix.Util
+
+  @doc """
+  Create a STIX-formatted timestamp for the given time.
+
+    iex> Stix.timestamp(Timex.now)
+  """
+  defdelegate timestamp(ts), to: Stix.Util
 end

@@ -8,7 +8,8 @@ defmodule Stix.Object do
       id:                       Stix.id(object_type),
       created:                  Timex.format!(Timex.now, "{ISO:Extended:Z}"),
       modified:                 Timex.format!(Timex.now, "{ISO:Extended:Z}"),
-      created_by_ref:           Application.get_env(:stix, :creator_id) || @defaults.creator_id
+      created_by_ref:           Application.get_env(:stix, :creator_id) || @defaults.creator_id,
+      spec_version:             "2.1"
     }
     |> Map.merge(Enum.into(object_properties, %{}))
     |> Stix.Util.atomize()

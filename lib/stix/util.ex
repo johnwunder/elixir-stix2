@@ -19,8 +19,8 @@ defmodule Stix.Util do
     |> atomize()
   end
 
-  defdelegate to_json(object_or_bundle), to: Poison, as: :encode
-  defdelegate to_json!(object_or_bundle), to: Poison, as: :encode!
+  def to_json(object_or_bundle), do: Poison.encode(object_or_bundle, pretty: true)
+  def to_json!(object_or_bundle), do: Poison.encode!(object_or_bundle, pretty: true)
 
   # Atomize a list of objects
   def atomize(list) when is_list(list), do: for i <- list, do: atomize(i)
@@ -34,11 +34,13 @@ defmodule Stix.Util do
   def atomize(key) when is_bitstring(key) and key in @expected_keys, do: String.to_atom(key)
 
   # Don't atomize anything else
-  def atomize(key) , do: key
+  def atomize(key), do: key
 
   # Atomize a value in a map, which just recursively calls atomize if it's a map
   def atomize_val(val) when is_map(val), do: atomize(val)
   def atomize_val(val) when is_list(val), do: atomize(val)
   def atomize_val(val), do: val
 
+  def now, do: timestamp(Timex.now)
+  def timestamp(ts), do: Timex.format!(ts, "{ISO:Extended:Z}")
 end
